@@ -1,3 +1,0 @@
-> This answer is drawn from JCB's competitive comparison library. Those documents have not yet been loaded into this proof of concept — that content will be provided and controlled by JCB.
->
-> Once your approved comparison matrices are uploaded, this response will return verified spec differences and recommended talking points based on your own positioning — not something sourced from the internet.

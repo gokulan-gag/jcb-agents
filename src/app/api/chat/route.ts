@@ -7,6 +7,11 @@ const delay = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+interface QuestionFile {
+  content: string;
+  routing_status?: string[];
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { content } = await req.json();
@@ -29,24 +34,29 @@ export async function POST(req: NextRequest) {
 
     const filePath = path.join(process.cwd(), "src/app/markdown", fileName);
     const fileContent = await fs.readFile(filePath, "utf-8");
+    const parsed: QuestionFile = JSON.parse(fileContent);
 
-    // Create a readable stream to simulate a streaming response
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       async start(controller) {
-        // We split by lines or chunks to simulate streaming
-        // For simplicity and matching the expected client format:
-        // The client expects lines of JSON: {"type": "item", "content": "..."}
+        // Emit routing_status first if present
+        if (parsed.routing_status && parsed.routing_status.length > 0) {
+          const routingEvent =
+            JSON.stringify({
+              type: "routing_status",
+              agents: parsed.routing_status,
+            }) + "\n";
+          controller.enqueue(encoder.encode(routingEvent));
+        }
 
-        // Split content into small chunks to simulate real streaming
+        // Stream content in chunks
         const chunkSize = 100;
-        for (let i = 0; i < fileContent.length; i += chunkSize) {
-          const chunk = fileContent.slice(i, i + chunkSize);
+        for (let i = 0; i < parsed.content.length; i += chunkSize) {
+          const chunk = parsed.content.slice(i, i + chunkSize);
           const data = JSON.stringify({ type: "item", content: chunk }) + "\n";
           controller.enqueue(encoder.encode(data));
-          // Small delay to make it look "live"
-          //   await new Promise((resolve) => setTimeout(resolve, 5));
         }
+
         controller.close();
       },
     });
