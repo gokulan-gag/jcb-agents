@@ -52,7 +52,7 @@ export const RULES = [
       "Customer wants to move this week. We don't have one locally — what can I offer and what should I say right now?",
       "customer wants to move this week",
       "no local stock",
-      "what can i offer",
+      "what can i offer and",
       "what should i say",
       "move this week",
     ],
@@ -102,6 +102,20 @@ export const RULES = [
       "what does it tell us",
       "rep query trends",
       "query analytics",
+    ],
+  },
+  {
+    // Q10: I've got a customer interested in a JCB 3TS. We don't have one in stock — what's the closest one in the network, what can I offer them on price, and can you draft me a response to send to them?
+    file: "question_10.md",
+    keywords: [
+      "I've got a customer interested in a JCB 3TS. We don't have one in stock — what's the closest one in the network, what can I offer them on price, and can you draft me a response to send to them?",
+      "customer interested in a jcb 3ts",
+      "don't have one in stock",
+      "closest in the network",
+      "what can i offer on price",
+      "draft a response",
+      "draft me a response",
+      "not in stock draft",
     ],
   },
 ];
