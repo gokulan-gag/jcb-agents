@@ -45,16 +45,40 @@ const ThemeContext = createContext(theme);
 
 const KV_HEADERS = ["label", "value", "", " "];
 
+// remark-gfm inserts \n text nodes between elements in the HAST, so
+// children[0] is not reliably the <tr>/<th>. Use .find() to skip whitespace nodes.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getHeaderCells(node: any): any[] {
+  const thead = node?.children?.find((c: any) => c.tagName === "thead");
+  const headerRow = thead?.children?.find((c: any) => c.tagName === "tr");
+  return headerRow?.children?.filter((c: any) => c.tagName === "th") ?? [];
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isKeyValueTable(node: any): boolean {
-  const thead = node?.children?.find((c: any) => c.tagName === "thead");
-  const headerCells = thead?.children?.[0]?.children || [];
+  const headerCells = getHeaderCells(node);
   return (
     headerCells.length === 2 &&
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     headerCells.every((cell: any) => {
       const text = (cell.children?.[0]?.value || "").toLowerCase().trim();
       return KV_HEADERS.includes(text);
+    })
+  );
+}
+
+// Detect any table whose every header cell is blank/whitespace —
+// regardless of column count. Used to suppress the header row on
+// tables that have no meaningful header content.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function hasBlankHeader(node: any): boolean {
+  const headerCells = getHeaderCells(node);
+  return (
+    headerCells.length > 0 &&
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    headerCells.every((cell: any) => {
+      const text = (cell.children?.[0]?.value ?? "").trim();
+      return text === "";
     })
   );
 }
@@ -74,6 +98,9 @@ const RowIndexContext = createContext(0);
 
 // Tracks the current cell index within a tr (for KV label/value column)
 const CellIndexContext = createContext(0);
+
+// Tracks whether the table header row should be suppressed (all cells blank)
+const SuppressHeaderContext = createContext(false);
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // COMPONENT OVERRIDES
@@ -243,41 +270,47 @@ function TableComp({
 }) {
   const t = useContext(ThemeContext);
   const tableIsKV = isKeyValueTable(node);
+  const suppressHeader = tableIsKV || hasBlankHeader(node);
 
   if (tableIsKV) {
     return (
-      <TableTypeContext.Provider value="kv">
-        <div style={{ margin: "0.5rem 0 1rem" }}>{children}</div>
-      </TableTypeContext.Provider>
+      <SuppressHeaderContext.Provider value={true}>
+        <TableTypeContext.Provider value="kv">
+          <div style={{ margin: "0.5rem 0 1rem" }}>{children}</div>
+        </TableTypeContext.Provider>
+      </SuppressHeaderContext.Provider>
     );
   }
 
   return (
-    <TableTypeContext.Provider value="data">
-      <div style={{ margin: "1rem 0 1.5rem", overflowX: "auto", width: "100%" }}>
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            fontSize: "0.92rem",
-            fontFamily: t.fonts.heading,
-            whiteSpace: "normal",
-            border: "none",
-          }}
-        >
-          {children}
-        </table>
-      </div>
-    </TableTypeContext.Provider>
+    <SuppressHeaderContext.Provider value={suppressHeader}>
+      <TableTypeContext.Provider value="data">
+        <div style={{ margin: "1rem 0 1.5rem", overflowX: "auto", width: "100%" }}>
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              fontSize: "0.92rem",
+              fontFamily: t.fonts.heading,
+              whiteSpace: "normal",
+              border: "none",
+            }}
+          >
+            {children}
+          </table>
+        </div>
+      </TableTypeContext.Provider>
+    </SuppressHeaderContext.Provider>
   );
 }
 
 function TheadComp({ children }: { children?: React.ReactNode }) {
   const t = useContext(ThemeContext);
   const tableType = useContext(TableTypeContext);
+  const suppressHeader = useContext(SuppressHeaderContext);
 
-  // KV tables have no visible header row
-  if (tableType === "kv") return null;
+  // KV tables and tables with blank header cells have no visible header row
+  if (tableType === "kv" || suppressHeader) return null;
 
   return (
     <thead style={{ background: t.colors.tableHeaderBg }}>{children}</thead>

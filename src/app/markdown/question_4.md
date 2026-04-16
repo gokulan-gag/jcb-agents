@@ -1,6 +1,6 @@
 #### CLOSEST AVAILABLE UNIT
 
-| Label         | Value                     |
+|               |                           |
 | ------------- | ------------------------- |
 | Dealer        | **Atlanta Tri-State JCB** |
 | Distance      | **~140 miles**            |

@@ -1,6 +1,6 @@
 #### TOP QUESTION CATEGORIES — LAST 7 DAYS
 
-| Label                                  | Value   |
+|                                        |         |
 | -------------------------------------- | ------- |
 | Product comparison (vs Kubota, Bobcat) | **42%** |
 | Inventory / availability               | **31%** |
