@@ -9,12 +9,14 @@ import StreamingMessage from "@/components/shared/StreamingMessage";
 import InputContainer from "@/components/shared/InputContainer";
 import InitialContainer from "@/components/shared/InitialContainer";
 import BotLoader from "@/components/shared/BotLoader";
+import RoutingStatus, { type RoutingAgent } from "@/components/shared/RoutingStatus";
 import ChartWithIframe from "@/components/shared/Chart";
 import { Group, Panel, Separator } from "react-resizable-panels";
 
 interface StreamResponse {
   type: string;
   content?: string;
+  agent?: string;
 }
 
 export default function AgentChat() {
@@ -32,6 +34,8 @@ export default function AgentChat() {
   const [streamingHtmlBlocks, setStreamingHtmlBlocks] = useState<
     { id: string; content: string; isTrailing: boolean }[]
   >([]);
+
+  const [routingAgents, setRoutingAgents] = useState<RoutingAgent[]>([]);
 
   const [url, setURL] = useState<string>("/api/chat");
 
@@ -99,6 +103,7 @@ export default function AgentChat() {
     setHtmlContent(""); // Clear previous HTML content
     setSelectedHtmlId("");
     setStreamingHtmlBlocks([]);
+    setRoutingAgents([]);
 
     // Re-enable auto-scroll when starting a new chat
     setAutoScrollEnabled(true);
@@ -141,7 +146,17 @@ export default function AgentChat() {
 
           try {
             const json: StreamResponse = JSON.parse(line);
-            if (json.type === "item" && json.content) {
+            if (json.type === "routing_status" && json.agent) {
+              // Mark all previous agents done, add new one as active
+              setRoutingAgents((prev) => [
+                ...prev.map((a) => ({ ...a, done: true })),
+                { name: json.agent!, done: false },
+              ]);
+            } else if (json.type === "item" && json.content) {
+              // First content chunk — mark all routing agents as done
+              setRoutingAgents((prev) =>
+                prev.length > 0 ? prev.map((a) => ({ ...a, done: true })) : prev,
+              );
               fullText += json.content;
 
               // Extract HTML blocks and text content in real-time
@@ -189,6 +204,7 @@ export default function AgentChat() {
       }
       setStreamingMessage("");
       setStreamingHtmlBlocks([]);
+      setRoutingAgents([]);
     } catch (error) {
       const errorMessage: Message = {
         role: "assistant",
@@ -198,6 +214,7 @@ export default function AgentChat() {
       console.error("Error:", error);
       setStreamingMessage("");
       setStreamingHtmlBlocks([]);
+      setRoutingAgents([]);
     } finally {
       setIsLoading(false);
     }
@@ -241,6 +258,10 @@ export default function AgentChat() {
                     onHtmlBlockSelect={handleHtmlBlockSelect}
                   />
 
+                  {routingAgents.length > 0 && !streamingMessage && (
+                    <RoutingStatus agents={routingAgents} />
+                  )}
+
                   {streamingMessage && (
                     <StreamingMessage
                       streamingMessage={streamingMessage}
@@ -250,7 +271,9 @@ export default function AgentChat() {
                     />
                   )}
 
-                  {isLoading && !streamingMessage && <BotLoader />}
+                  {isLoading && !streamingMessage && routingAgents.length === 0 && (
+                    <BotLoader />
+                  )}
 
                   <div ref={messagesEndRef} />
                 </div>

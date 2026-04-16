@@ -3,9 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { RULES } from "@/utils/consts/queryRules";
 
-const delay = (ms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 interface QuestionFile {
   content: string;
@@ -16,8 +14,6 @@ export async function POST(req: NextRequest) {
   try {
     const { content } = await req.json();
     const query = content.toLowerCase();
-
-    await delay(5000);
 
     const q = query?.toLowerCase() ?? "";
 
@@ -36,17 +32,22 @@ export async function POST(req: NextRequest) {
     const fileContent = await fs.readFile(filePath, "utf-8");
     const parsed: QuestionFile = JSON.parse(fileContent);
 
+    // Only delay upfront if there's no routing_status to show immediately
+    if (!parsed.routing_status || parsed.routing_status.length === 0) {
+      await delay(5000);
+    }
+
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       async start(controller) {
-        // Emit routing_status first if present
+        // Send each routing_status agent one by one with 2s between each
         if (parsed.routing_status && parsed.routing_status.length > 0) {
-          const routingEvent =
-            JSON.stringify({
-              type: "routing_status",
-              agents: parsed.routing_status,
-            }) + "\n";
-          controller.enqueue(encoder.encode(routingEvent));
+          for (const agent of parsed.routing_status) {
+            const event =
+              JSON.stringify({ type: "routing_status", agent }) + "\n";
+            controller.enqueue(encoder.encode(event));
+            await delay(2000);
+          }
         }
 
         // Stream content in chunks
