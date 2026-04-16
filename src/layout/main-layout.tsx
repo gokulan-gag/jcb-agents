@@ -61,7 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div>
-                        <h1 className="text-lg font-semibold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                        <h1 className="text-lg font-semibold bg-linear-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
                           {activeMenuName}
                         </h1>
                       </div>
