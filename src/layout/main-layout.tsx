@@ -8,37 +8,36 @@ import {
   MonitorCog,
 } from "lucide-react";
 import SideBar from "./side-bar";
-import InventoryAnalysisChat from "@/screens/agents/intelligent-replenishment/components/InventoryAnalysisChat";
 
 const menus = [
   {
     to: "/agents/demand-forecasting",
-    label: "Demand Forecasting",
+    label: "Demand Planning Agent",
     icon: ChartSpline,
   },
   {
-    to: "/agents/intelligent-replenishment",
-    label: "Intelligent Replenishment",
+    to: "/agents/product-agent",
+    label: "Product Agent",
     icon: ClipboardListIcon,
   },
   {
-    to: "/agents/proactive-marketing",
-    label: "Proactive Marketing for Maintenance Contractors",
+    to: "/agents/inventory-agent",
+    label: "Inventory Agent",
     icon: MonitorCog,
   },
   {
-    to: "/agents/project-scheduler",
-    label: "Project Scheduler",
+    to: "/agents/commercial-agent",
+    label: "Commercial Agent",
     icon: Lightbulb,
   },
   {
-    to: "/agents/market-insights",
-    label: "Market Insights",
+    to: "/agents/transfer-agent",
+    label: "Transfer Agent",
     icon: Building2,
   },
   {
-    to: "/agents/assortment-optimization",
-    label: "Assortment Optimization",
+    to: "/agents/isr-coach-agent",
+    label: "ISR Coach Agent",
     icon: Boxes,
   },
 ];
@@ -70,7 +69,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   </div>
                 </div>
 
-                <InventoryAnalysisChat />
+                {children}
               </div>
             </div>
           </div>

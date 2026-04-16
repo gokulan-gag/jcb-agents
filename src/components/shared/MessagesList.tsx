@@ -91,7 +91,9 @@ const MessagesList = ({
               className={`min-w-0 max-w-[85%] rounded-2xl px-5 py-3 shadow-md bg-white/80 backdrop-blur text-gray-800 border border-gray-100 overflow-hidden`}
             >
               <div className="**:wrap-break-word [&_*]:overflow-wrap-anywhere">
-                {message.role === "assistant" && message.htmlBlocks?.length ? (
+                {message.role === "user" ? (
+                  <span>{message.content}</span>
+                ) : message.role === "assistant" && message.htmlBlocks?.length ? (
                   renderContentWithInlineHtml(
                     message.content,
                     message.htmlBlocks,

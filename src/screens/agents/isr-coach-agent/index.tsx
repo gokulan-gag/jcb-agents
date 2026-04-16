@@ -1,5 +1,5 @@
 import AgentChat from "@/components/common/AgentChat";
 
-export const DemandForecastingPage = () => {
+export const ISRCoachAgentPage = () => {
   return <AgentChat />;
 };
