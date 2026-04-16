@@ -1,9 +1,8 @@
 import type { Message } from "@/types/chat";
 import { Bot, User } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import HtmlBlockRenderer from "./HTMLBlockRenderer";
 import ChartWithIframe from "./Chart";
+import { MarkdownRenderer } from "./MarkdownComponents";
 
 interface MessagesListProps {
   messages: Message[];
@@ -54,11 +53,7 @@ function renderContentWithInlineHtml(
       return null;
     }
     if (part.trim()) {
-      return (
-        <ReactMarkdown key={i} remarkPlugins={[remarkGfm]}>
-          {part}
-        </ReactMarkdown>
-      );
+      return <MarkdownRenderer key={i}>{part}</MarkdownRenderer>;
     }
     return null;
   });
@@ -95,16 +90,16 @@ const MessagesList = ({
             <div
               className={`min-w-0 max-w-[85%] rounded-2xl px-5 py-3 shadow-md bg-white/80 backdrop-blur text-gray-800 border border-gray-100 overflow-hidden`}
             >
-              <div className="prose **:wrap-break-word [&_*]:overflow-wrap-anywhere">
+              <div className="**:wrap-break-word [&_*]:overflow-wrap-anywhere">
                 {message.role === "assistant" && message.htmlBlocks?.length ? (
                   renderContentWithInlineHtml(
                     message.content,
                     message.htmlBlocks,
                   )
                 ) : (
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <MarkdownRenderer>
                     {message.content.replace(/\[VISUAL_CHART_[A-Z0-9]+\]/g, "")}
-                  </ReactMarkdown>
+                  </MarkdownRenderer>
                 )}
               </div>
 

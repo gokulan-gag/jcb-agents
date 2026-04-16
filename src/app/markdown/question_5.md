@@ -1,23 +1,17 @@
-You have **$6.4M of inventory** sitting more than 180 days of supply. Four SKUs represent the biggest opportunity to convert dead stock into revenue **without risking service levels**."
+#### AVAILABILITY
 
-## The 4 Real SKUs (Detailed)
+Unit available at Atlanta Tri-State JCB, ready immediately. Lead with availability — "I've located one available now" is stronger than "we don't have one here."
 
-| Manufacturer      | SKU                 | Description                   | Why We Have Too Much                 |
-| ----------------- | ------------------- | ----------------------------- | ------------------------------------ |
-| Acuity / Lithonia | CPANL-24-40L-840-M2 | 2x4 LED Flat Panel            | Overbought for projects that slipped |
-| Schneider         | NQOD Panelboard     | Commercial Panelboard         | Large project cancellation           |
-| Lutron            | PD-6WCL-WH          | Diva Dimmer                   | Demand shifted to Maestro line       |
-| Hubbell           | HBL5362             | 20A Hospital Grade Receptacle | Over-allocated to wrong DC           |
+#### WHAT YOU CAN OFFER
 
-## Action Table — Sales Push List
+|                |                                                   |
+| -------------- | ------------------------------------------------- |
+| Cash purchase  | **Up to 3% discount on list price**               |
+| Finance option | **0% for 48 months (subject to credit approval)** |
+| Urgency angle  | **Available now vs 8–12 weeks on factory order**  |
 
-**Title:** _Products to Push This Month_
+#### SAY THIS TO THE CUSTOMER
 
-| SKU                          | Location       | On Hand | 90-Day Demand | Excess | Cash Value | Execute        |
-| ---------------------------- | -------------- | ------- | ------------- | ------ | ---------- | -------------- |
-| Lithonia CPANL-24-40L-840-M2 | Central Hub DC | 1,200   | 420           | 780    | $702K      | ▶ Launch Promo |
-| Schneider NQOD Panelboard    | Westport DC    | 64      | 18            | 46     | $920K      | ▶ Launch Promo |
-| Lutron PD-6WCL-WH            | Eastgate DC    | 2,400   | 900           | 1,500  | $180K      | ▶ Launch Promo |
-| Hubbell HBL5362              | Northvale DC   | 3,200   | 1,100         | 2,100  | $310K      | ▶ Launch Promo |
+> "Good news — I've located a 3TS available right now that we can get to you quickly. I can offer a small cash discount or 0% financing for 48 months depending on what works best for you. If you're ready, I can reserve this unit today."
 
-**What Execute does:** Creates promo pricing, notifies sales, flags in quoting, tracks sell-through.
+**Next step:** Secure verbal commitment on the call, then initiate transfer request.

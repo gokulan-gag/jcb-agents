@@ -1,121 +1,107 @@
 export const RULES = [
   {
+    // Q1: Qualifying a customer on a 3TS Teleskid call
     file: "question_1.md",
     keywords: [
-      "Which 5 SKUs represent the highest near-term availability risk and should be replenished first?",
-      "highest near-term availability risk",
-      "5 skus",
-      "top 5 skus",
+      "I'm on the phone with a customer asking about a JCB 3TS Teleskid. What should I ask to qualify them?",
+      "qualify",
+      "qualification questions",
+      "what should I ask",
+      "on the phone with a customer",
+      "3ts teleskid",
     ],
   },
   {
+    // Q2: JCB 3TS vs Kubota SVL75-2 competitive comparison
     file: "question_2.md",
     keywords: [
-      "Which SKUs are currently overstocked relative to lead time plus a 60-day demand buffer?",
-      "overstocked relative to lead time",
-      "60-day demand buffer",
+      "The customer is also looking at a Kubota SVL75-2. Why would they choose the JCB 3TS over it?",
+      "kubota svl75",
+      "3ts vs kubota",
+      "why choose jcb over kubota",
+      "competitive comparison",
+      "kubota svl75-2",
     ],
   },
   {
+    // Q3: Do I have a 3TS available right now?
     file: "question_3.md",
     keywords: [
-      "What is the projected demand for each SKU for the next 6 months?",
-      "Can you generate the 6 months forecast for the SKU EXTC_RW?",
-      "projected demand",
-      "next 6 months",
-      "6 months forecast",
+      "Do I have a 3TS available right now?",
+      "do i have a 3ts",
+      "in stock locally",
+      "local availability",
+      "do we have one",
     ],
   },
   {
+    // Q4: Find me the closest available 3TS in the network.
     file: "question_4.md",
     keywords: [
-      "Which SKUs should we fix first to recover the most lost sales?",
-      "fix first",
-      "most lost sales",
+      "Find me the closest available 3TS in the network.",
+      "closest available 3ts",
+      "find in the network",
+      "dealer network availability",
+      "nearest available unit",
     ],
   },
   {
+    // Q5: Customer wants to move this week. We don't have one locally — what can I offer and what should I say right now?
     file: "question_5.md",
     keywords: [
-      "Which products should we actively push right now to reduce excess inventory and free up cash?",
-      "reduce excess inventory",
-      "free up cash",
+      "Customer wants to move this week. We don't have one locally — what can I offer and what should I say right now?",
+      "customer wants to move this week",
+      "no local stock",
+      "what can i offer",
+      "what should i say",
+      "move this week",
     ],
   },
   {
+    // Q6: Help me draft a transfer request for that Atlanta unit.
     file: "question_6.md",
     keywords: [
-      "Which deals need action right now because the product is not available?",
-      "deals need action",
-      "product is not available",
+      "Help me draft a transfer request for that Atlanta unit.",
+      "transfer request",
+      "draft transfer",
+      "atlanta unit",
+      "request transfer",
     ],
   },
   {
+    // Q7: Write a short follow-up email to send the customer after the call.
     file: "question_7.md",
     keywords: [
-      "Which deals are stuck because the specified product isn't available, and where should we request alternate approval?",
-      "specified product isn't available",
-      "alternate approval",
+      "Write a short follow-up email to send the customer after the call.",
+      "follow-up email",
+      "email after the call",
+      "write an email",
+      "follow up email",
+      "send the customer",
     ],
   },
   {
-    file: "question_8a.md",
+    // Q8: What should I be focused on today?
+    file: "question_8.md",
     keywords: [
-      "Check availability for Acuity CPX-2X4-4000LM-40K-M2.",
-      "Check availability",
+      "What should I be focused on today?",
+      "focused on today",
+      "priorities for today",
+      "what should i work on",
+      "my priorities",
+      "what to do today",
     ],
   },
   {
-    file: "question_8b.md",
-    keywords: [
-      "Find alternates for Acuity CPX-2X4-4000LM-40K-M2 from Cooper and RAB with matching specs and show availability.",
-      "matching specs",
-    ],
-  },
-  {
+    // Q9: What are inside sales reps asking about most this week, and what does it tell us?
     file: "question_9.md",
     keywords: [
-      "Which Items should I push this month to hit my revenue target?",
-      "push this month",
-      "hit my revenue target",
-    ],
-  },
-  {
-    file: "question_10.md",
-    keywords: [
-      "Which dealers are at risk of losing sales due to stockouts in the next 60 days?",
-      "risk of losing sales",
-      "stockouts in the next 60 days",
-    ],
-  },
-  {
-    file: "question_11.md",
-    keywords: [
-      "Which dealers are overstocked and tying up working capital and can I swap their inventory with another dealer?",
-      "tying up working capital",
-      "swap their inventory",
-    ],
-  },
-  {
-    file: "question_12.md",
-    keywords: [
-      "What's our 60-day supply risk for LED 2×4 troffers — wattage selectable 30/35/40W, color selectable 35K/40K/50K — across Southeast branches?",
-      "60-day supply risk",
-      "LED 2×4 troffers",
-      "wattage selectable 30/35/40W",
-      "color selectable 35K/40K/50K",
-      "Southeast branches",
-    ],
-  },
-  {
-    file: "question_13.md",
-    keywords: [
-      "MFR 1's ESD just changed on my LED 2×4 order for Project Alpha — what's the impact and what should I do?",
-      "MFR 1's ESD just changed",
-      "LED 2×4 order",
-      "Project Alpha",
-      "impact",
-      "what should I do",
+      "What are inside sales reps asking about most this week, and what does it tell us?",
+      "inside sales reps asking",
+      "most this week",
+      "what does it tell us",
+      "rep query trends",
+      "query analytics",
     ],
   },
 ];
