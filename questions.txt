@@ -1,0 +1,18 @@
+1. Which 5 SKUs represent the highest near-term availability risk and should be replenished first?
+2. Which SKUs are currently overstocked relative to lead time plus a 60-day demand buffer?
+3. What is the projected demand profile for SKU EXTC-RW over the next 6 months?
+
+4. Which SKUs should we fix first to recover the most lost sales?
+5. Which products should we actively push right now to reduce excess inventory and free up cash?
+6. Which deals need action right now because the product is not available?
+7. Which deals are stuck because the specified product isn’t available, and where should we request alternate approval?
+8a. Check availability for Acuity CPX-2X4-4000LM-40K-M2.
+8b. Find alternates for Acuity CPX-2X4-4000LM-40K-M2 from Cooper and RAB with matching specs and show availability.
+
+
+9. Which Items should I push this month to hit my revenue target?
+10. Which dealers are at risk of losing sales due to stockouts in the next 60 days?
+11. Which dealers are overstocked and tying up working capital and can I swap their inventory with another dealer?
+
+12. What's our 60-day supply risk for LED 2×4 troffers — wattage selectable 30/35/40W, color selectable 35K/40K/50K — across Southeast branches?
+13. MFR 1's ESD just changed on my LED 2×4 order for Project Alpha — what's the impact and what should I do?

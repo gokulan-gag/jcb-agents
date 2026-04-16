@@ -1,0 +1,84 @@
+.sb_item_top_curve {
+  cursor: default;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 0;
+  background: var(--color-warm-off-white);
+  top: -4px;
+}
+
+.sb_item_top_curve::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: 0;
+  height: 17px;
+  background: var(--color-secondary);
+  z-index: 2;
+  border-bottom-right-radius: 15px;
+  top: -1px;
+}
+
+.sb_item_bottom_curve {
+  cursor: default;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 0;
+  background: var(--color-warm-off-white);
+  top: 60px;
+}
+
+.sb_item_bottom_curve::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: 0;
+  height: 17px;
+  background: var(--color-secondary);
+  z-index: 2;
+  border-top-right-radius: 15px;
+}
+
+.sb_item_hover_menu {
+  transition: all 250ms ease-out;
+}
+
+.sb_item_hover_effect {
+  position: absolute;
+  width: 0px;
+  height: 23px;
+  background: var(--color-warm-off-white);
+  border-radius: 50% 0 0 50%;
+  top: 14px;
+  right: -27px;
+  transition: all 400ms ease-out;
+}
+
+.sb_item_hover_menu:hover .sb_item_hover_effect {
+  width: 23px;
+  transition: all 400ms ease-out;
+}
+
+.sb_item_hover_tooltip {
+  top: 15.3px;
+  position: absolute;
+  left: 43px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+  background-color: var(--color-secondary);
+  white-space: nowrap;
+  z-index: 20;
+  transition: all 400ms ease-out;
+  transition-delay: 350ms;
+  transform: scale(0);
+  transform-origin: left;
+}
+
+.sb_item_hover_menu:hover .sb_item_hover_tooltip {
+  transform: scale(1);
+}
